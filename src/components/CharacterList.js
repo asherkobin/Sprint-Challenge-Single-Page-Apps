@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import CharacterCard from "./CharacterCard";
+import Styled from "styled-components";
 
-export default function CharacterList() {
-  // TODO: Add useState to track data from useEffect
+export default function CharacterList({rmCharacters}) {
+  const CharacterListContainer = Styled.section`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  `;
 
-  useEffect(() => {
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-  }, []);
+  console.log("CharacterList got", rmCharacters);
 
   return (
-    <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
-    </section>
+    <CharacterListContainer>
+      {
+        rmCharacters.map(c => <CharacterCard key={c.id} characterData={c} />)
+      }
+    </CharacterListContainer>
   );
 }
