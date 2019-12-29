@@ -1,42 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import Axios from "axios";
+import { Switch, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header.js";
 import CharacterList from "./components/CharacterList";
 import WelcomePage from "./components/WelcomePage";
-import SearchForm from "./components/SearchForm";
-
-import * as rmSampleData from "./Data.json";
+import Styled from "styled-components";
 
 export default function App() {
-  const [rmCharacters, setRMCharacters] = useState([]);
-  const [searchFilter, setSearchFilter] = useState("");
-  const [apiUrl, setApiUrl] = useState("");
-  
-  useEffect(() => {
-    Axios
-      .get(apiUrl)
-      .then(res => {
-        console.log("Api Returned Characters", res.data.results)
-        setRMCharacters(res.data.results);
-      })
-      .catch(err => console.log(err));
-  }, [apiUrl]);
-
-  useEffect(() => {
-    setApiUrl("https://rickandmortyapi.com/api/character/" + searchFilter);
-  }, [searchFilter]);
+  const NavigationContainer = Styled.nav`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 20px;
+  `;
 
   return (
     <main>
       <Header />
+      <NavigationContainer>
+        <NavLink to="/characters" activeStyle={{ fontWeight: "bold" }}>Characters</NavLink>
+        <NavLink to="/locations" activeStyle={{ fontWeight: "bold" }}>Locations</NavLink>
+        <NavLink to="/episodes" activeStyle={{ fontWeight: "bold" }}>Episodes</NavLink>
+      </NavigationContainer>
       <Switch>
         <Route path="/characters">
-          <CharacterList rmCharacters={rmCharacters} />
+          <CharacterList />
+        </Route>
+        <Route path="/locations">
+          <CharacterList />
+        </Route>
+        <Route path="/episodes">
+          <CharacterList />
         </Route>
         <Route path="/">
           <WelcomePage />
-          <SearchForm setSearchFilter={setSearchFilter} />
         </Route>
       </Switch>
     </main>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function SearchForm({ setSearchFilter }) {
+export default function SearchForm({ buttonLabel, setSearchFilter }) {
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -12,7 +12,8 @@ export default function SearchForm({ setSearchFilter }) {
     <section className="search-form" style={ {textAlign: "center", marginTop: "20px"} }>
       <form onSubmit={ handleSubmit }>
         <input type="text" name="name" id="name" />
-        <input type="submit" value="Search" />
+        { " " }
+        <input type="submit" value={buttonLabel} />
       </form>
     </section>
   );

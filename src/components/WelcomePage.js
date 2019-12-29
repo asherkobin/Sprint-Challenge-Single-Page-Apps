@@ -12,9 +12,6 @@ export default function WelcomePage() {
           alt="rick"
         />
       </header>
-      <nav>
-        <Link to="/characters">View Results</Link>
-      </nav>
     </section>
   );
 }
