@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Switch, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header.js";
-import CharacterList from "./components/CharacterList";
 import WelcomePage from "./components/WelcomePage";
 import Styled from "styled-components";
+import CommonList from "./components/CommonList";
+import CharacterCard from "./components/CharacterCard";
+import LocationCard from "./components/LocationCard";
+import EpisodeCard from "./components/EpisodeCard";
 
 export default function App() {
   const NavigationContainer = Styled.nav`
@@ -13,23 +16,37 @@ export default function App() {
     margin-top: 20px;
   `;
 
+  const activeLinkStyle = {
+    fontWeight: "bold",
+    textDecoration: "none"
+  };
+
   return (
     <main>
       <Header />
       <NavigationContainer>
-        <NavLink to="/characters" activeStyle={{ fontWeight: "bold" }}>Characters</NavLink>
-        <NavLink to="/locations" activeStyle={{ fontWeight: "bold" }}>Locations</NavLink>
-        <NavLink to="/episodes" activeStyle={{ fontWeight: "bold" }}>Episodes</NavLink>
+        <NavLink to="/characters" activeStyle={activeLinkStyle}>Characters</NavLink>
+        <NavLink to="/locations" activeStyle={activeLinkStyle}>Locations</NavLink>
+        <NavLink to="/episodes" activeStyle={activeLinkStyle}>Episodes</NavLink>
       </NavigationContainer>
       <Switch>
-        <Route path="/characters">
-          <CharacterList />
+        <Route path="/characters" key="characters">
+          <CommonList
+            cardComponent={CharacterCard} 
+            apiUrl="https://rickandmortyapi.com/api/character/" 
+            dataLabel="Characters" />
         </Route>
-        <Route path="/locations">
-          <CharacterList />
+        <Route path="/locations" key="locations">
+          <CommonList
+            cardComponent={LocationCard}
+            apiUrl="https://rickandmortyapi.com/api/location/"
+            dataLabel="Locations" />
         </Route>
-        <Route path="/episodes">
-          <CharacterList />
+        <Route path="/episodes" key="episodes">
+          <CommonList 
+            cardComponent={EpisodeCard} 
+            apiUrl="https://rickandmortyapi.com/api/episode/" 
+            dataLabel="Episodes" />
         </Route>
         <Route path="/">
           <WelcomePage />

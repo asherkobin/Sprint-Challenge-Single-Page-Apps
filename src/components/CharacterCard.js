@@ -1,10 +1,10 @@
 import React from "react";
 import Styled from "styled-components";
 
-export default function CharacterCard({characterData}) {
+export default function CharacterCard({itemInfo}) {
   const CharacterCardContainer = Styled.div`
     border: 1px solid black;
-    margin: 10px;
+    margin: 5px;
     text-align: center;
   `;
 
@@ -21,12 +21,12 @@ export default function CharacterCard({characterData}) {
 
   return (
     <CharacterCardContainer>
-      <CharacterHeader>{characterData.name}</CharacterHeader>
+      <CharacterHeader>{itemInfo.name}</CharacterHeader>
       <CharacterBody>
-        <div>{characterData.species}</div>
-        <div>{characterData.location.name}</div>
+        <div>{itemInfo.species}</div>
+        <div>{itemInfo.location.name}</div>
         <div>
-          <img src={characterData.image} alt={characterData.name} />
+          <img src={itemInfo.image} alt={itemInfo.name} style={{ marginTop: "5px" }} />
         </div>
       </CharacterBody>
     </CharacterCardContainer>

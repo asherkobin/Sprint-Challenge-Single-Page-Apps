@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function SearchForm({ buttonLabel, setSearchFilter }) {
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    setSearchFilter("?name=" + document.getElementById("name").value);
+    setSearchFilter("&name=" + document.getElementById("name").value);
   };
  
   return (
