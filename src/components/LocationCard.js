@@ -1,5 +1,6 @@
 import React from "react";
 import Styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export default function LocationCard({itemInfo}) {
   const LocationCardContainer = Styled.div`
@@ -24,6 +25,9 @@ export default function LocationCard({itemInfo}) {
       <LocationHeader>{itemInfo.name}</LocationHeader>
       <LocationBody>
         <div>{itemInfo.type}</div>
+        <div>{itemInfo.dimension}</div>
+        <div>Residents: {itemInfo.residents.length}</div>
+        <div><NavLink to={{pathname: "/locations/" + itemInfo.id, locationInfo: {itemInfo}}}>Explore This Location</NavLink></div>
       </LocationBody>
     </LocationCardContainer>
   );

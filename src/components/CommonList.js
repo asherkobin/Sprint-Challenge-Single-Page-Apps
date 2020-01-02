@@ -4,7 +4,7 @@ import SearchForm from "./SearchForm";
 import Pagination from "./Pagination";
 import Styled from "styled-components";
  
-export default function CommonList({apiUrl, dataLabel, cardComponent}) {
+export default function CommonList({apiUrl, dataLabel, CardComponent}) {
   const [dataItems, setDataItems] = useState([]);
   const [paginationInfo, setPaginationInfo] = useState({});
   const [searchFilter, setSearchFilter] = useState("");
@@ -12,6 +12,7 @@ export default function CommonList({apiUrl, dataLabel, cardComponent}) {
 
   useEffect(() => {
     const dataUrl = apiUrl + "?page=" + pageNumber + searchFilter;
+  
     console.log("dataUrl:", dataUrl);
     
     Axios
@@ -52,10 +53,10 @@ export default function CommonList({apiUrl, dataLabel, cardComponent}) {
     <SearchForm buttonLabel={"Search " + dataLabel} setSearchFilter={setSearchFilterWithPageReset}/>
     <Pagination paginationInfo={paginationInfo} setPageNumber={setPageNumber} />
     <CommonListContainer>
-      { 
+      {
         dataItems && dataItems.length > 0 ? 
           dataItems.map((dataItem) => {
-            return React.createElement(cardComponent, { itemInfo: dataItem, key: dataItem.id });
+            return <CardComponent itemInfo={dataItem} key={dataItem.id} />
           })
           :
           <NoResultsMessage>No Results</NoResultsMessage>

@@ -7,6 +7,7 @@ import CommonList from "./components/CommonList";
 import CharacterCard from "./components/CharacterCard";
 import LocationCard from "./components/LocationCard";
 import EpisodeCard from "./components/EpisodeCard";
+import Location from "./components/Location";
 
 export default function App() {
   const NavigationContainer = Styled.nav`
@@ -32,19 +33,22 @@ export default function App() {
       <Switch>
         <Route path="/characters" key="characters">
           <CommonList
-            cardComponent={CharacterCard} 
+            CardComponent={CharacterCard} 
             apiUrl="https://rickandmortyapi.com/api/character/" 
             dataLabel="Characters" />
         </Route>
+        <Route path="/locations/:locationId">
+          <Location />
+        </Route>
         <Route path="/locations" key="locations">
           <CommonList
-            cardComponent={LocationCard}
+            CardComponent={LocationCard}
             apiUrl="https://rickandmortyapi.com/api/location/"
             dataLabel="Locations" />
         </Route>
         <Route path="/episodes" key="episodes">
           <CommonList 
-            cardComponent={EpisodeCard} 
+            CardComponent={EpisodeCard} 
             apiUrl="https://rickandmortyapi.com/api/episode/" 
             dataLabel="Episodes" />
         </Route>
